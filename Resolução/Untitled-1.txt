@@ -19,3 +19,6 @@ Resultado obtido: Não abriu no tamnho menor que meia tela do PC. Ele corta os m
 Status: Reprovado
 
 Observações: 
+
+Ajustar para resoluções diferentes.
+
