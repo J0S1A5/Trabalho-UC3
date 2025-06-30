@@ -1,0 +1,22 @@
+Identificador: TST - 010
+
+Titulo : Confirmação da exclusão
+
+Objetivo do teste: Verificar se o site apresenta a mensagem antes de excluir algo
+
+Funcionalidade testada: Feito a tentativa de excluir as listas e o sistema pedir a confirmação
+
+Passos para execução:
+
+1 - Criar a lista
+2 - Selecionar a opção de arquivar a lista
+3 - Pedir a confirmação
+
+
+Resultado esperado : Efetuado os testes de confirmação da exclusão da lista
+
+Resultado obtido: Teste realizado com sucesso
+
+Status: Aprovado
+
+Observações: 

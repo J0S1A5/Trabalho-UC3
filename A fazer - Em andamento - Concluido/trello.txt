@@ -1,0 +1,23 @@
+Identificador: TST - 005
+
+Titulo: Testando funcionalidade das opções a fazer-em andamento - concluidos
+
+Objetivo do teste: Criar a tarefa e movimentar entre as opções
+
+Funcionalidade testada: Teste de Funcionalidades
+
+Passos para execução:
+
+1 - Criar a tarefa
+2 - Deixar no a fazer 
+3 - Movimentar entre as opções
+
+
+
+Resultaod esperado: Salvar nas 3 opções apresentadas
+
+Resultado obtido: Testes realizado com sucesso e sem algum tipo de erro
+
+Status: Aprovado
+
+Observações: 

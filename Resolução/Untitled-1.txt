@@ -1,0 +1,21 @@
+Identificador: TST - 008
+
+Titulo: Resolução
+
+Objetivo do teste: Abrir a pagina em tamanhos diferentes
+
+Funcionalidade testada: Tetstar se a tela se adapta.
+
+Passos para execução:
+
+1 - Abrir tela normal 
+2 - Abrir tela menor
+
+
+Resultado esperado : Abrir em tamanhos diferentes nos navagadores
+
+Resultado obtido: Não abriu no tamnho menor que meia tela do PC. Ele corta os menus 
+
+Status: Reprovado
+
+Observações: 

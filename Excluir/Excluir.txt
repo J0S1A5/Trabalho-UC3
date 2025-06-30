@@ -1,0 +1,22 @@
+Identificador: TST - 009
+
+Titulo: Arquivar
+
+Objetivo do teste: Arquivar uma tarefa e reativar
+
+Funcionalidade testada: Tentar arquivar uma tarefa e após restaura-la
+
+Passos para execução:
+
+1 - Criar a tarefa
+2 - Arquivar a tarefa
+3 - Desfazer o arquivamento
+
+
+Resultado esperado : Conseguido criar a tarefa e arquivar na sequencia e após restaurar o arquivamento
+
+Resultado obtido: Teste realizado com sucesso
+
+Status: Aprovado
+
+Observações: 
