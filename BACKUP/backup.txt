@@ -1,0 +1,58 @@
+---
+
+## Plano de Backup para o Sistema Analisado
+
+Este plano de backup detalha as estratégias para proteger os dados do sistema, garantindo sua disponibilidade e integridade em caso de falhas ou perdas.
+
+# Frequência do Backup
+
+A frequência do backup será diária. Além disso, será realizado um backup em tempo real (contínuo) para transações críticas no banco de dados, garantindo a mínima perda de dados em caso de falha.
+
+# Forma de Backup
+
+O backup será automático. Serão configurados scripts e ferramentas para que o processo ocorra sem intervenção manual, reduzindo a chance de erros humanos e garantindo a regularidade dos backups.
+
+# Ferramenta ou Sistema de Backup Sugerido
+
+Para os dados do banco de dados, sugerimos o uso de ferramentas nativas de backup do próprio SGBD (Sistema Gerenciador de Banco de Dados), como o **pg_dump** para PostgreSQL ou **mysqldump** para MySQL, complementadas por soluções de replicação contínua. Para os arquivos e configurações, o **Veeam Backup & Replication** é uma excelente opção para ambientes virtualizados, oferecendo recursos robustos de desduplicação, compressão e restauração. Como alternativa para armazenamento em nuvem de backups menos críticos, ou como uma camada extra de redundância, o **Rclone** pode ser utilizado para sincronizar dados com serviços como Google Drive ou S3 compatíveis.
+
+### O que será salvo no backup
+
+Serão salvos os seguintes itens:
+
+* Banco de Dados Completo: Todos os dados, esquemas, procedimentos armazenados e triggers.
+* Arquivos de Configuração do Sistema: Incluindo arquivos de configuração de servidores web, servidores de aplicação e qualquer outro serviço essencial.
+* Arquivos do Sistema/Aplicação: Todos os arquivos da aplicação, como códigos-fonte, bibliotecas, assets e arquivos gerados pelos usuários.
+
+---
+
+## Plano de Restore (Recuperação)
+
+O plano de restore descreve os procedimentos para recuperar o sistema em caso de perda de dados ou desastres.
+
+### Como seria feita a restauração dos dados
+
+A restauração dos dados seria feita da seguinte forma:
+
+1.  Avaliação da Causa da Falha: Antes de iniciar a restauração, será realizada uma análise para identificar a causa raiz da falha, garantindo que o problema não se repita após a recuperação.
+2.  Restauração do Banco de Dados**:
+    * Para o backup diário: Utilização das ferramentas nativas do SGBD (ex: `pg_restore`, `mysql`) para restaurar a última versão íntegra do banco de dados.
+    * Para o backup em tempo real: Aplicação dos logs de transação para recuperar o banco de dados ao ponto mais próximo possível do momento da falha, minimizando a perda de dados.
+3.  Restauração dos Arquivos e Configurações: Utilização da ferramenta de backup (ex: Veeam) para restaurar os arquivos de configuração e os arquivos da aplicação para o local original ou para um novo servidor, conforme a necessidade.
+4.  Verificação Pós-Restauração: Após a restauração, serão realizados testes funcionais e de integridade para garantir que todos os componentes do sistema estejam operando corretamente e que os dados estejam acessíveis.
+
+### Quanto tempo o sistema ficaria indisponível nesse processo?
+
+O tempo de inatividade do sistema durante o processo de restauração dependerá da magnitude da falha e da quantidade de dados a serem recuperados. Nosso objetivo é minimizar o **RTO (Recovery Time Objective)**. Para cenários de falha de disco em um único servidor, a expectativa é de **2 a 4 horas** de inatividade. Em casos de desastre maior, envolvendo a perda total de um datacenter, o RTO pode ser de **até 24 horas**, dependendo da infraestrutura de recuperação de desastres implementada.
+
+### Como garantir a integridade dos dados restaurados
+
+Para garantir a integridade dos dados restaurados, as seguintes medidas serão adotadas:
+
+1.  Testes Regulares de Restauração: Serão realizados testes de restauração de forma periódica (mensalmente), em um ambiente de homologação ou teste, para validar a eficácia dos backups e a funcionalidade do plano de restore.
+2.  Verificação de Checksums/Hashes: Durante o processo de backup e restauração, serão verificados checksums ou hashes dos arquivos para garantir que não houve corrupção de dados.
+3.  Monitoramento de Logs**: Os logs de backup e restauração serão monitorados ativamente para identificar qualquer erro ou inconsistência.
+4.  Validação de Dados Pós-Restauração**: Após a restauração, serão executados scripts de validação de dados para verificar a consistência e a integridade do banco de dados e dos arquivos. Além disso, serão realizados testes funcionais com casos de uso reais para confirmar que o sistema está operando como esperado.
+5.  Ambiente Isolado para Testes**: Os testes de restauração serão feitos em um ambiente isolado para evitar qualquer impacto no sistema em produção.
+
+Este plano visa fornecer uma estrutura robusta para a proteção e recuperação do sistema. Há algo mais que você gostaria de explorar ou detalhar sobre este plano de backup?
